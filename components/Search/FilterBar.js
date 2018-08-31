@@ -5,14 +5,20 @@ import Select from 'react-select'
 
 class FilterBar extends Component {
   render () {
+    const { classes } = this.props
     return (
       <Select
-        defaultValue={[filterOptions[0]]}
+        defaultValue={[
+          filterOptions[0], // Department
+          filterOptions[1], // Event
+          filterOptions[2], // Faculty
+          filterOptions[4], // Major
+          filterOptions[5] /// News
+        ]}
         isMulti
-        name="colors"
+        name="postTypesSelect"
         options={filterOptions}
-        className="basic-multi-select"
-        classNamePrefix="select"
+        className={classes.filterBar}
       />
     )
   }
@@ -20,6 +26,7 @@ class FilterBar extends Component {
 
 const filterOptions = [
   { value: 'department', label: 'Department' },
+  { value: 'event', label: 'Event' },
   { value: 'faculty', label: 'Faculty' },
   { value: 'institute', label: 'Institute' },
   { value: 'major', label: 'Major' },
@@ -32,7 +39,6 @@ const filterOptions = [
   'campus-security',
   'associate-program',
   'minor',
-  'event',
   'about-page',
   'fms-page',
   'chapel-page',
@@ -58,6 +64,8 @@ const filterOptions = [
   'graduate-program',
   'sass-page' */
 
-const styles = theme => ({})
+const styles = theme => ({
+  filterBar: {}
+})
 
 export default withStyles(styles)(FilterBar)

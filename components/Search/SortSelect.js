@@ -2,19 +2,14 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Select from 'react-select'
+
 class SortSelect extends Component {
   render () {
+    const { classes } = this.props
     return (
       <Select
-        className="basic-single"
-        classNamePrefix="select"
+        className={classes.sortSelect}
         defaultValue={sortOptions[0]}
-        // isDisabled={isDisabled}
-        // isLoading={isLoading}
-        // isClearable={isClearable}
-        // isRtl={isRtl}
-        // isSearchable={isSearchable}
-        name="sortSelect"
         options={sortOptions}
       />
     )
@@ -28,6 +23,11 @@ const sortOptions = [
   { value: 'oldest', label: 'Oldest' }
 ]
 
-const styles = theme => ({})
+const styles = theme => ({
+  sortSelect: {
+    fontSize: '12px',
+    marginTop: '0.5rem'
+  }
+})
 
 export default withStyles(styles)(SortSelect)

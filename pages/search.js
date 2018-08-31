@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import withRoot from '../components/withRoot'
@@ -8,82 +8,43 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 import Layout from '../components/Layout'
-import Head from 'next/head'
 
 import FilterBar from '../components/Search/FilterBar'
 import SortSelect from '../components/Search/SortSelect'
+import SearchBar from '../components/Search/SearchBar'
 
-import TextField from '@material-ui/core/TextField'
-
-// imports for filter
-// import Select from 'react-select'
-
-/*
-import Checkbox from '@material-ui/core/Checkbox'
-import FormControl from '@material-ui/core/FormControl'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormHelperText from '@material-ui/core/FormHelperText'
-import FormLabel from '@material-ui/core/FormLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
-
-import debounce from 'lodash.debounce'
-import throttle from 'lodash.throttle'
-import { getJSON } from '../utils/fetch'
-*/
-
-function Search (props) {
-  const { classes } = props
-
-  return (
-    <div className={classes.root}>
-      <Layout>
-        <Head>
-          <link
-            rel="stylesheet"
-            href="/static/styles/page.css"
-            type="text/css"
-          />
-        </Head>
-        <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <TextField
-              style={{ width: '100%' }}
-              id="search"
-              label="xs=12 SEARCH"
-              type="search"
-              className={classes.textField}
-              // margin="normal"
-              // value={searchTerm}
-              // onChange={this.getSearchResults}
-            >
-              xs=12 SEARCH
-            </TextField>
+class Search extends Component {
+  render () {
+    return (
+      <div className={styles.root}>
+        <Layout>
+          <Grid container spacing={8}>
+            <Grid item xs={9}>
+              <SearchBar className={styles.searchBar} />
+            </Grid>
+            <Grid item xs={3}>
+              <SortSelect className={styles.sortSelect} />
+            </Grid>
+            <Grid item xs={12}>
+              <FilterBar className={styles.filterBar} />
+            </Grid>
+            <Grid item xs={12}>
+              <Paper className={styles.paper}>xs=12 RESULTS</Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Paper className={styles.paper}>xs=12 LOADING</Paper>
+            </Grid>
           </Grid>
-          <Grid item xs={8}>
-            <FilterBar />
-          </Grid>
-          <Grid item xs={4}>
-            <SortSelect />
-          </Grid>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>xs=12 RESULTS</Paper>
-          </Grid>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>xs=12 LOADING</Paper>
-          </Grid>
-        </Grid>
-      </Layout>
-    </div>
-  )
+        </Layout>
+      </div>
+    )
+  }
 }
 
 /* CSS Styles */
 const styles = theme => ({
   root: {
-    margin: theme.spacing.unit,
-    flexGrow: 1
+    padding: '0 1rem'
   },
   paper: {
     padding: theme.spacing.unit,
@@ -97,7 +58,11 @@ const styles = theme => ({
     position: 'absolute',
     left: 2,
     fontSize: 16
-  }
+  },
+  sortSelect: {
+    marginTop: '0.75rem'
+  },
+  searchBar: {}
 })
 
 Search.propTypes = {
